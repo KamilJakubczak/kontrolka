@@ -1,23 +1,29 @@
 import { React, Fragment } from 'react';
 import data from '../data/badania.json';
 import Title from './Section';
-import getdata from '../data/datafix'
+import Search from './Search'
 const Kontrolka = () => {
 
-    const new_data = getdata();
-
-    // const new_data = data.sekcje.map((data) => {
-    //          return <div>{data.tytul}</div>
-    //         // {data.kolumny.map((data) => {
-    //         //     <div>{data.type}</div>
-    //         // })}
-    // })
 
     return (
         <Fragment>
-            {data.sekcje.map(data => {
-                return <Title>{data}</Title>
-            })}
+            <Search />
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">Dostępne badania</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div className="modal-body">
+                    {data.sekcje.map(data => {
+                            return <Title key={data.tytul}>{data}</Title>
+                        })}
+                  </div>
+                </div>
+              </div>
+            </div>
         </Fragment>
     )
 }

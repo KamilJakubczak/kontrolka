@@ -1,4 +1,4 @@
-import { React, Fragment } from 'react';
+import { React } from 'react';
 import Title from './Title';
 import Examine from './Examine';
 
@@ -18,10 +18,8 @@ const Column = (props) => {
     for(const examine of details) {
         if(examine.typ ==='naglowek') {                
             if (Object.keys(badanie).length !== 0) {
-                // console.warn(badanie)
                 badania.push(badanie)
             }
-    
             badanie = {};
             badanie['title'] = examine;
             badanie['examines'] = [];
@@ -29,34 +27,18 @@ const Column = (props) => {
             badanie['examines'].push(examine);
         }
     }
-    // console.log(badania)
-     return(
+    return(
         <div className='examine-group'>
             <div style={my_style}>{badania.map(b => {
-                 return <div>
-                    <Title>{b.title}</Title>
-                    <Examine>{b.examines}</Examine> 
+                return <div>
+                    <Title key={b.title}>{b.title}</Title>
+                    <Examine >{b.examines}</Examine> 
                     </div>
             })}
             </div>
-
         </div>
     )
 
-    // return(
-    //     <div className='examine-group'>
-    //         <div>{details.map(examine => {
-    //             if(examine.typ ==='naglowek') {
-    //                 return <Title>{examine}</Title>
-    //             } else {
-
-    //                 return <Examine>{examine}</Examine>
-    //             }
-    //         })}
-    //         </div>
-
-    //     </div>
-    // )
 }
 
 export default Column;
